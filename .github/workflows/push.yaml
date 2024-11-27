@@ -1,0 +1,16 @@
+name: mysite
+on: [push]
+  branches: ["dev"]
+
+env:
+  level: git
+
+jobs:
+  website:
+    steps:
+      - name: start-job
+        run: echo "start jobs"
+      - name: edit-html
+        run: |
+          FILE="/index.html"
+          sed -i "s/Local/${{env.level}}/"$FILE
