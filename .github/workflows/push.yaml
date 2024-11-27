@@ -4,15 +4,30 @@ on:
     branches: ["dev"]
 
 env:
-  level: git
+  owner: github
 
 jobs:
   website:
     runs-on: ubuntu-latest
     steps:
       - name: start-job
-        run: echo "start jobs"
-      - name: edit-html
+        run: echo "start jobs" 
+
+ dockerizing:
+   runs-on: ubuntu-latest
+   steps:
+     - name: Login to Docker Hub
+       uses: docker/login-action@v3
+       with:
+         username: ${{ secrets.DOCKER_USERNAME }}
+         password: ${{ secrets.DOCKER_PASSWORD }}
+
+      # Build Docker image
+      - name: Build Docker Image
         run: |
-          FILE="./index.html"
-          sed -i "s/Local/${{env.level}}/" "$FILE"
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/myweb:latest .
+
+      # Push Docker image to Docker Hub
+      - name: Push Docker Image
+        run: |
+          docker push ${{ secrets.DOCKER_USERNAME }}/myweb:latest
