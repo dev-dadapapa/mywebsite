@@ -1,6 +1,7 @@
 name: mysite
-on: [push]
-  branches: ["dev"]
+on: 
+  push:
+    branches: ["dev"]
 
 env:
   level: git
