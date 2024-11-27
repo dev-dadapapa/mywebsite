@@ -14,5 +14,5 @@ jobs:
         run: echo "start jobs"
       - name: edit-html
         run: |
-          FILE="/index.html"
+          FILE="./index.html"
           sed -i "s/Local/${{env.level}}/"$FILE
