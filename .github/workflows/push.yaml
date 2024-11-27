@@ -8,6 +8,7 @@ env:
 
 jobs:
   website:
+    runs-on: ubuntu-latest
     steps:
       - name: start-job
         run: echo "start jobs"
