@@ -3,7 +3,7 @@ on:
   push:
     branches: ["dev"]
     paths: 
-    - '/html/index.html'
+    - 'html/index.html'
 
 env:
   owner: github
