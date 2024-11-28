@@ -2,11 +2,9 @@ name: mysite
 on: 
   push:
     branches: ["dev"]
-    paths: 
-    - 'html/index.html'
 
 env:
-  owner: github
+  owner: dadapapa
 
 jobs:
   website:
@@ -29,4 +27,4 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: ${{ vars.DOCKER_USERNAME}}/myweb:latest
+          tags: ${{ env.owner}}/myweb:latest
