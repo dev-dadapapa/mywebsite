@@ -1,7 +1,7 @@
 name: mysite
 on: 
   push:
-    branches: ["dev2"]
+    branches: ["dev3"]
   pull_request:
     types: [opened]
     branches: 
