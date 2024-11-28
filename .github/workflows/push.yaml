@@ -3,8 +3,9 @@ on:
   push:
     branches: ["dev2"]
   pull_request:
-    types: [opened]
-    branches: ["main"]
+    types: [opened] 
+    branches: 
+      - 'main/**' 
 
 env:
   owner: dadapapa
