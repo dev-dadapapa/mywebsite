@@ -1,11 +1,13 @@
 name: mysite2
 on: 
   push:
-    branches: ["dev2"]
+    branches: ["dev"]
+    paths:
+    - 'html/**'
   pull_request:
     types: [opened]
     branches: 
-      - 'dev3'
+      - 'release'
 
 env:
   owner: dadapapa
@@ -14,10 +16,22 @@ jobs:
   website:
     runs-on: ubuntu-latest
     steps:
-      - name: start-job
-        run: echo "start jobs" 
-
+      - name: Checkout code
+        uses: actions/checkout@v3
+    
+      - name: cache css and images
+        uses: actions/cache@v3
+        with:
+          path: |
+            html/styles
+            html/images
+          key: ${{ runner.os }}-assets-${{ hashFiles('html/styles/**','html/images/**')}}
+          restore-keys: |
+            ${{ runner.os}}-assets-
+ 
   dockerizing:
+    needs:
+      - website
     runs-on: ubuntu-latest
     steps:
       - name: Login to Docker Hub
