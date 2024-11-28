@@ -2,6 +2,8 @@ name: mysite
 on: 
   push:
     branches: ["dev"]
+    paths: 
+      - '/html/index.html'
 
 env:
   owner: github
